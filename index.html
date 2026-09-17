@@ -243,7 +243,14 @@ th{background:#eef4ff;color:#123ca8}
             <textarea id="studentAddress" placeholder="ঠিকানা লিখুন"></textarea>
           </div>
         </div>
-        <button class="btn btn-red submit-btn" type="submit">📲 WhatsApp-এ ভর্তি তথ্য পাঠান</button>
+        <div style="text-align:center;margin-top:15px;">
+  <button class="btn btn-red submit-btn" type="button" onclick="showApplyOptions()">📝 আবেদন করুন</button>
+
+  <div id="applyOptions" style="display:none;margin-top:12px;">
+    <button class="btn btn-red" type="button" onclick="sendWhatsApp()">🟢 WhatsApp-এ আবেদন করুন</button>
+    <button class="btn" type="button" onclick="onlineApply()">🔵 অনলাইনে আবেদন করুন</button>
+  </div>
+        </div>
         <div id="formNotice" class="notice"></div>
       </form>
     </div>
@@ -277,19 +284,38 @@ th{background:#eef4ff;color:#123ca8}
 <footer>
   <p>© 2026 Educational Alliance — Learn • Work • Change</p>
 </footer>
-
 <script>
-document.getElementById("admissionForm").addEventListener("submit", function(e){
-  e.preventDefault();
+function getFormData() {
   const name = document.getElementById("studentName").value.trim();
   const phone = document.getElementById("studentPhone").value.trim();
   const cls = document.getElementById("studentClass").value;
   const course = document.getElementById("courseName").value.trim() || "উল্লেখ নেই";
   const address = document.getElementById("studentAddress").value.trim() || "উল্লেখ নেই";
-  const text = `Educational Alliance অনলাইন ভর্তি আবেদন%0Aশিক্ষার্থীর নাম: ${name}%0Aমোবাইল: ${phone}%0Aশ্রেণি: ${cls}%0Aকোর্স/বিষয়: ${course}%0Aঠিকানা: ${address}`;
+
+  return { name, phone, cls, course, address };
+}
+
+ function showApplyOptions() {
+  const options = document.getElementById("applyOptions");
+  options.style.display = options.style.display === "none" ? "block" : "none";
+ }
+function sendWhatsApp() {
+  const data = getFormData();
+
+  if (!data.name || !data.phone || !data.cls) {
+    alert("দয়া করে নাম, মোবাইল নম্বর ও শ্রেণি পূরণ করুন।");
+    return;
+  }
+
+  const text = `Educational Alliance অনলাইন ভর্তি আবেদন%0Aশিক্ষার্থীর নাম: ${data.name}%0Aমোবাইল: ${data.phone}%0Aশ্রেণি: ${data.cls}%0Aকোর্স/বিষয়: ${data.course}%0Aঠিকানা: ${data.address}`;
+
   const url = "https://wa.me/8801400034888?text=" + text;
   window.open(url, "_blank");
-});
+}
+
+function onlineApply() {
+  alert("অনলাইন আবেদন ব্যবস্থা শিগগিরই চালু হবে।");
+}
 </script>
 </body>
 </html>
