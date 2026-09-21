@@ -399,21 +399,20 @@ function showApplyOptions() {
 
   alert("✅ আপনার আবেদন সফলভাবে জমা হয়েছে ধন্যবাদ।");
  }
+ function showApplyOptions() {
+  const options = document.getElementById("applyOptions");
+
+  if (options) {
+    options.style.display = "block";
+  }
+ }
 function showCourses() {
   document.getElementById("courses-page").style.display = "block";
   document.getElementById("courses-page").scrollIntoView({
     behavior: "smooth"
   });
  }
- function showAdmission() {
-  const options = document.getElementById("applyOptions");
-
-  if (options) {
-    options.style.display = "block";
-  document.getElementById("admissionTitle").style.display = "block"; 
-   options.scrollIntoView({
-      behavior: "smooth"
-    });
+ 
   }
  }
 </script>
