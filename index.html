@@ -314,7 +314,31 @@ function sendWhatsApp() {
 }
 
 function onlineApply() {
-  alert("অনলাইন আবেদন ব্যবস্থা শিগগিরই চালু হবে।");
+  const data = getFormData();
+
+  if (!data.name || !data.phone || !data.cls) {
+    alert("দয়া করে নাম, মোবাইল নম্বর ও শ্রেণি পূরণ করুন।");
+    return;
+  }
+
+  fetch("https://script.google.com/macros/s/AKfycbyjOzM5tGGT1Zrk4n3IcIZSB55DNj1A3hoFDmdBrxPBkddYBf_kU0OysMzOV37V6LYvsA/exec", {
+    method: "POST",
+    mode: "no-cors",
+    headers: {
+      "Content-Type": "text/plain;charset=utf-8"
+    },
+    body: JSON.stringify({
+      name: data.name,
+      phone: data.phone,
+      cls: data.cls,
+      course: data.course,
+      address: data.address,
+      method: "অনলাইন"
+    })
+  });
+
+  alert("✅ আপনার আবেদন সফলভাবে জমা হয়েছে।");
+ }
 }
 </script>
 </body>
