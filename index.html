@@ -111,7 +111,8 @@ th{background:#eef4ff;color:#123ca8}
       <p>শিক্ষার মাধ্যমে স্বপ্ন পূরণের পথে। ষষ্ঠ থেকে দ্বাদশ শ্রেণির শিক্ষার্থীদের জন্য মানসম্মত ও যত্নশীল পাঠদান।</p>
       <div class="buttons">
        <a class="btn btn-light" href="javascript:void(0)" onclick="showCourses()">কোর্স দেখুন</a>
-        <a class="btn btn-red" href="tel:01400034888">📞 ভর্তি/যোগাযোগ</a>
+        <a class="btn btn-red" href="javascript:void(0)" onclick="showAdmission()">📝 ভর্তি আবেদন</a>
+       <a class="btn btn-red" href="tel:01400034888">📞 ভর্তি/যোগাযোগ</a>
       </div>
     </div>
     <div class="hero-logo">
@@ -374,6 +375,16 @@ function showCourses() {
   document.getElementById("courses-page").scrollIntoView({
     behavior: "smooth"
   });
+ }
+ function showAdmission() {
+  const form = document.getElementById("admission");
+
+  if (form) {
+    form.style.display = "block";
+    form.scrollIntoView({
+      behavior: "smooth"
+    });
+  }
  }
 </script>
 </body>
