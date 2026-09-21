@@ -339,7 +339,13 @@ function sendWhatsApp() {
 
 function onlineApply() {
   const data = getFormData();
+function showApplyOptions() {
+  const options = document.getElementById("applyOptions");
 
+  if (options) {
+    options.style.display = "block";
+  }
+   }
   if (!data.name || !data.phone || !data.cls) {
     alert("দয়া করে নাম, মোবাইল নম্বর ও শ্রেণি পূরণ করুন।");
     return;
