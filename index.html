@@ -211,53 +211,82 @@ th{background:#eef4ff;color:#123ca8}
 </section>
 
 <section id="admission">
-  <div class="container admission-wrap">
-    <div class="section-title">
-      <h2>অনলাইন ভর্তি ফরম</h2>
-      <p>তথ্য পূরণ করে Submit করুন। আমাদের প্রতিনিধি আপনার সাথে খুব দ্রুত যোগাযোগ করবে ইনশাআল্লাহ।</p>
-    </div>
-    <div class="info">
-      <form id="admissionForm">
-        <div class="form-grid">
-          <div class="form-group">
-            <label>শিক্ষার্থীর নাম *</label>
-            <input id="studentName" required placeholder="নাম লিখুন">
-          </div>
-          <div class="form-group">
-            <label>মোবাইল নম্বর *</label>
-            <input id="studentPhone" type="tel" required placeholder="01XXXXXXXXX">
-          </div>
-          <div class="form-group">
-            <label>শ্রেণি *</label>
-            <select id="studentClass" required>
-              <option value="">নির্বাচন করুন</option>
-              <option>ষষ্ঠ</option><option>সপ্তম</option><option>অষ্টম</option>
-              <option>SSC</option><option>HSC</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>পছন্দের কোর্স/বিষয়</label>
-            <input id="courseName" placeholder="যেমন: Chemistry">
-          </div>
-          <div class="form-group full">
-            <label>ঠিকানা</label>
-            <textarea id="studentAddress" placeholder="ঠিকানা লিখুন"></textarea>
-          </div>
-        </div>
-        <div style="text-align:center;margin-top:15px;">
-  <button class="btn btn-red submit-btn" type="button" onclick="showApplyOptions()">📝 আবেদন করুন</button>
+<div class="container admission-wrap">
 
-  <div id="applyOptions" style="display:none;margin-top:12px;">
-    <button class="btn btn-red" type="button" onclick="sendWhatsApp()">🟢 WhatsApp-এ আবেদন করুন</button>
-    <button class="btn" type="button" onclick="onlineApply()">🔵 অনলাইনে আবেদন করুন</button>
+  <div class="section-title">
+    <h2>অনলাইন ভর্তি ফরম</h2>
+    <p>তথ্য পূরণ করে Submit করুন। আমাদের প্রতিনিধি আপনার সাথে খুব দ্রুত যোগাযোগ করবে ইনশাআল্লাহ।</p>
   </div>
-        </div>
-        <div id="formNotice" class="notice"></div>
-      </form>
-    </div>
-  </div>
-</section>
 
+  <div class="info">
+
+    <div style="text-align:center;">
+      <button class="btn btn-red submit-btn" type="button" onclick="showApplyOptions()">
+        📝 আবেদন করুন
+      </button>
+    </div>
+
+    <div id="applyOptions" style="display:none;text-align:center;margin-top:12px;">
+      <button class="btn btn-red" type="button" onclick="showAdmissionForm('whatsapp')">
+        🟢 WhatsApp-এ করুন
+      </button>
+
+      <button class="btn" type="button" onclick="showAdmissionForm('online')">
+        🔵 অনলাইনে করুন
+      </button>
+    </div>
+
+    <form id="admissionForm" style="display:none;margin-top:20px;">
+
+      <div class="form-grid">
+
+        <div class="form-group">
+          <label>শিক্ষার্থীর নাম *</label>
+          <input id="studentName" required placeholder="নাম লিখুন">
+        </div>
+
+        <div class="form-group">
+          <label>মোবাইল নম্বর *</label>
+          <input id="studentPhone" type="tel" required placeholder="01XXXXXXXXX">
+        </div>
+
+        <div class="form-group">
+          <label>শ্রেণি *</label>
+          <select id="studentClass" required>
+            <option value="">নির্বাচন করুন</option>
+            <option>ষষ্ঠ</option>
+            <option>সপ্তম</option>
+            <option>অষ্টম</option>
+            <option>SSC</option>
+            <option>HSC</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>পছন্দের কোর্স/বিষয়</label>
+          <input id="courseName" placeholder="যেমন: Chemistry">
+        </div>
+
+        <div class="form-group full">
+          <label>ঠিকানা</label>
+          <textarea id="studentAddress" placeholder="ঠিকানা লিখুন"></textarea>
+        </div>
+
+      </div>
+
+      <div style="text-align:center;margin-top:15px;">
+        <button id="finalSubmitBtn" class="btn btn-red submit-btn" type="button">
+          আবেদন জমা দিন
+        </button>
+      </div>
+
+      <div id="formNotice" class="notice"></div>
+
+    </form>
+
+  </div>
+</div>
+ </section>
 <section>
   <div class="container">
     <div class="section-title">
