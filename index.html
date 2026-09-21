@@ -307,11 +307,35 @@ function sendWhatsApp() {
     return;
   }
 
-  const text = `Educational Alliance অনলাইন ভর্তি আবেদন%0Aশিক্ষার্থীর নাম: ${data.name}%0Aমোবাইল: ${data.phone}%0Aশ্রেণি: ${data.cls}%0Aকোর্স/বিষয়: ${data.course}%0Aঠিকানা: ${data.address}`;
+  fetch("https://script.google.com/macros/s/AKfycbyjOzM5tGGT1Zrk4n3IcIZSB55DNj1A3hoFDmdBrxPBkddYBf_kU0OysMzOV37V6LYvsA/exec", {
+    method: "POST",
+    mode: "no-cors",
+    headers: {
+      "Content-Type": "text/plain;charset=utf-8"
+    },
+    body: JSON.stringify({
+      name: data.name,
+      phone: data.phone,
+      cls: data.cls,
+      course: data.course,
+      address: data.address,
+      method: "WhatsApp"
+    })
+  });
+
+  const text =
+    `Educational Alliance অনলাইন ভর্তি আবেদন%0A` +
+    `শিক্ষার্থীর নাম: ${data.name}%0A` +
+    `মোবাইল: ${data.phone}%0A` +
+    `শ্রেণি: ${data.cls}%0A` +
+    `কোর্স/বিষয়: ${data.course}%0A` +
+    `ঠিকানা: ${data.address}`;
 
   const url = "https://wa.me/8801400034888?text=" + text;
+
+  alert("আবেদনের তথ্য সংরক্ষণ করা হয়েছে। এখন WhatsApp খুলছে।");
   window.open(url, "_blank");
-}
+   }
 
 function onlineApply() {
   const data = getFormData();
