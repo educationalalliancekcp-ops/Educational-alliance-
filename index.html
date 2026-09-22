@@ -147,20 +147,32 @@ document.querySelectorAll(".panel").forEach(p=>p.classList.remove("active"));
 let s=document.getElementById("admissionSection");s.style.display="block";s.scrollIntoView({behavior:"smooth"});
 }
 function getSubjects(){return Array.from(document.querySelectorAll('input[name="subject"]:checked')).map(x=>x.value).join(", ")}
-document.getElementById("admissionForm").addEventListener("submit",e=>{
-e.preventDefault();let subjects=getSubjects();if(!subjects){showNotice("দয়া করে অন্তত একটি বিষয় নির্বাচন করুন।","error");return}
+document.getElementById("admissionForm").addEventListener("submit",function(e){
+e.preventDefault();
+
+let subjects=getSubjects();
+
+if(!subjects){
+showNotice("দয়া করে অন্তত একটি বিষয় নির্বাচন করুন।","error");
+return;
+}
+
 pendingData={
-studentName:studentName.value.trim(),
-studentPhone:studentPhone.value.trim(),
-parentPhone:parentPhone.value.trim(),
-studentClass:studentClass.value,
+studentName:document.getElementById("studentName").value.trim(),
+studentPhone:document.getElementById("studentPhone").value.trim(),
+parentPhone:document.getElementById("parentPhone").value.trim(),
+studentClass:document.getElementById("studentClass").value,
 subject:subjects,
-bloodGroup:bloodGroup.value,
-gender:gender.value,
-studentAddress:studentAddress.value.trim(),
-schoolName:schoolName.value.trim(),
+bloodGroup:document.getElementById("bloodGroup").value,
+gender:document.getElementById("gender").value,
+studentAddress:document.getElementById("studentAddress").value.trim(),
+schoolName:document.getElementById("schoolName").value.trim(),
 applicationMethod:applicationMethod
 };
+
+showReview();
+});
+};showReview();
 });
 function showReview(){
 let d=pendingData;
