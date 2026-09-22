@@ -3,19 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Educational Alliance | Admission</title>
+    <title>Educational Alliance | Kotchandpur</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { background-color: #f4f7f6; color: #333; line-height: 1.6; padding: 15px; }
-        .container { max-width: 600px; margin: 20px auto; background: white; padding: 25px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.08); }
-        h2 { color: #1e3c72; text-align: center; margin-bottom: 20px; border-bottom: 2px solid #1e3c72; padding-bottom: 10px; font-size: 1.6rem; }
-        .choice-container { display: flex; gap: 12px; margin-bottom: 20px; }
+        body { background-color: #f4f7f6; color: #333; line-height: 1.6; }
+        header { background: linear-gradient(135deg, #1e3c72, #2a5298); color: white; text-align: center; padding: 40px 20px; }
+        header h1 { font-size: 2.5rem; margin-bottom: 10px; }
+        header p { font-size: 1.1rem; opacity: 0.9; }
+        .container { max-width: 800px; margin: 30px auto; padding: 20px; }
+        .section { background: white; padding: 25px; margin-bottom: 25px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        h2 { color: #1e3c72; border-bottom: 2px solid #2a5298; padding-bottom: 8px; margin-bottom: 15px; }
+        .courses { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        @media (max-width: 600px) { .courses { grid-template-columns: 1fr; } }
+        .card { background: #f9fbfd; padding: 15px; border-left: 4px solid #2a5298; border-radius: 4px; }
+        .btn-call { display: inline-block; background: #28a745; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; margin: 5px; font-weight: bold; }
+        .choice-container { display: flex; gap: 12px; margin-bottom: 20px; margin-top: 15px; }
         .choice-btn { flex: 1; padding: 12px; border: 2px solid #ccc; border-radius: 6px; cursor: pointer; text-align: center; font-weight: bold; background: #fafafa; transition: 0.3s; font-size: 0.95rem; }
         .choice-btn:hover { border-color: #1e3c72; background: #eef2f7; }
         .choice-btn.active { border-color: #1e3c72; background: #1e3c72; color: white; }
         .form-section { display: none; }
         .form-section.show { display: block; }
-        .form-group { margin-bottom: 15px; }
+        .form-group { margin-bottom: 15px; text-align: left; }
         label { display: block; margin-bottom: 5px; font-weight: bold; font-size: 0.95rem; }
         input, select, textarea { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 1rem; outline: none; }
         input:focus, select:focus, textarea:focus { border-color: #1e3c72; }
@@ -26,66 +34,92 @@
         .status-msg { margin-top: 15px; padding: 12px; border-radius: 4px; display: none; text-align: center; font-weight: bold; font-size: 0.95rem; }
         .success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
         .error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        footer { text-align: center; padding: 20px; background: #333; color: white; margin-top: 40px; }
     </style>
 </head>
 <body>
+    <header>
+        <h1>🏫 Educational Alliance</h1>
+        <p>কোটচাঁদপুর, ঝিনাইদহ</p>
+        <p>ষষ্ঠ থেকে দ্বাদশ শ্রেণি | মানসম্মত শিক্ষা • নিয়মিত পরিচর্যা • সফলতার লক্ষ্য</p>
+    </header>
 
-<div class="container">
-    <h2>🎯 ভর্তি আবেদন প্যানেল</h2>
-    
-    <label style="text-align: center; display: block; margin-bottom: 10px; color: #555;">আবেদনের মাধ্যম বেছে নিন:</label>
-    <div class="choice-container">
-        <div class="choice-btn active" id="btn-choice-online" onclick="switchMethod('online')">🌐 অনলাইনে আবেদন</div>
-        <div class="choice-btn" id="btn-choice-wa" onclick="switchMethod('whatsapp')">💬 WhatsApp আবেদন</div>
-    </div>
-
-    <div id="online-form-section" class="form-section show">
-        <form id="onlineForm">
-            <div class="form-group"><label for="name">शिक्षার্থীর নাম *</label><input type="text" id="name" name="name" required placeholder="নাম লিখুন"></div>
-            <div class="form-group"><label for="student_phone">শিক্ষার্থীর মোবাইল *</label><input type="tel" id="student_phone" name="student_phone" required placeholder="০১৭XXXXXXXX"></div>
-            <div class="form-group"><label for="guardian_phone">অভিভাবকের মোবাইল *</label><input type="tel" id="guardian_phone" name="guardian_phone" required placeholder="০১৭XXXXXXXX"></div>
-            <div class="form-group">
-                <label for="class_name">শ্রেণি *</label>
-                <select id="class_name" name="class_name" required>
-                    <option value="">নির্বাচন করুন</option>
-                    <option value="৬ষ্ঠ">৬ষ্ঠ</option><option value="৭ম">৭ম</option><option value="৮ম">৮ম</option>
-                    <option value="৯ম">৯ম</option><option value="১০ম">১০ম</option><option value="১১শ">১১শ</option><option value="১২ম">১২ম</option>
-                </select>
+    <div class="container">
+        <div class="section">
+            <h2>📚 আমাদের কোর্সসমূহ</h2>
+            <div class="courses">
+                <div class="card"><h3>৬ষ্ঠ–৮ম শ্রেণি</h3><p>সকল বিষয়</p></div>
+                <div class="card"><h3>৯ম–১০ম শ্রেণি</h3><p>সাধারণ গণিত, উচ্চতর গণিত, কেমিস্ট্রি</p></div>
+                <div class="card"><h3>১১শ–১২ম শ্রেণি</h3><p>রসায়ন, তথ্য ও যোগাযোগ প্রযুক্তি (ICT)</p></div>
             </div>
-            <div class="form-group"><label for="subject">বিষয় *</label><input type="text" id="subject" name="subject" required placeholder="উদা: সকল বিষয় বা নির্দিষ্ট বিষয়"></div>
-            <div class="form-group">
-                <label for="blood">রক্তের গ্রুপ</label>
-                <select id="blood" name="blood">
-                    <option value="">নির্বাচন করুন</option>
-                    <option value="A+">A+</option><option value="A-">A−</option><option value="B+">B+</option><option value="B-">B−</option>
-                    <option value="O+">O+</option><option value="O-">O−</option><option value="AB+">AB+</option><option value="AB-">AB−</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="gender">লিঙ্গ</label>
-                <select id="gender" name="gender">
-                    <option value="">নির্বাচন করুন</option>
-                    <option value="ছেলে">ছেলে</option><option value="মেয়ে">মেয়ে</option>
-                </select>
-            </div>
-            <div class="form-group"><label for="address">ঠিকানা *</label><textarea id="address" name="address" rows="2" required placeholder="আপনার বর্তমান ঠিকানা"></textarea></div>
-            <div class="form-group"><label for="school">স্কুল/কলেজের নাম *</label><input type="text" id="school" name="school" required placeholder="শিক্ষা প্রতিষ্ঠানের নাম"></div>
-            <button type="submit" class="btn-submit">✅ চূড়ান্তভাবে জমা দিন</button>
-        </form>
-        <div id="status" class="status-msg"></div>
-    </div>
+        </div>
 
-    <div id="wa-form-section" class="form-section">
-        <form id="waForm">
-            <div class="form-group"><label for="wa_name">শিক্ষার্থীর নাম *</label><input type="text" id="wa_name" required placeholder="নাম লিখুন"></div>
-            <div class="form-group"><label for="wa_phone">মোবাইল নম্বর *</label><input type="tel" id="wa_phone" required placeholder="০১৭XXXXXXXX"></div>
-            <div class="form-group"><label for="wa_class">শ্রেণি *</label><input type="text" id="wa_class" required placeholder="যেমন: ১০ম"></div>
-            <button type="submit" class="btn-submit btn-whatsapp">💬 হোয়াটসঅ্যাপে পাঠান</button>
-        </form>
-    </div>
-</div>
+        <div class="section">
+            <h2>⭐ আমাদের বৈশিষ্ট্যসমূহ</h2>
+            <ul style="list-style-type: none; padding-left: 5px;">
+                <li>📝 লেকচার শীট প্রদান</li>
+                <li>📊 নিয়মিত পরীক্ষার ব্যবস্থা</li>
+                <li>🤝 দুর্বল শিক্ষার্থীদের বিশেষ যত্ন</li>
+                <li>🎯 SSC ও HSC বিশেষ ব্যাচ</li>
+                <li>👨‍🏫 অভিজ্ঞ শিক্ষকবৃন্দ</li>
+            </ul>
+        </div>
+                <div class="section" style="text-align: center;">
+            <h2>📝 ভর্তি আবেদন প্যানেল</h2>
+            <p style="color: #555; margin-bottom: 10px;">আপনার পছন্দের আবেদনের মাধ্যমটি বেছে নিন:</p>
+            <div class="choice-container">
+                <div class="choice-btn active" id="btn-choice-online" onclick="switchMethod('online')">🌐 অনলাইনে আবেদন</div>
+                <div class="choice-btn" id="btn-choice-wa" onclick="switchMethod('whatsapp')">💬 WhatsApp আবেদন</div>
+            </div>
 
-<script>
+            <div id="online-form-section" class="form-section show">
+                <form id="onlineForm">
+                    <div class="form-group"><label>শিক্ষার্থীর নাম *</label><input type="text" id="name" required placeholder="নাম লিখুন"></div>
+                    <div class="form-group"><label>শিক্ষার্থীর মোবাইল *</label><input type="tel" id="student_phone" required placeholder="০১৭XXXXXXXX"></div>
+                    <div class="form-group"><label>অভিভাবকের মোবাইল *</label><input type="tel" id="guardian_phone" required placeholder="০১৭XXXXXXXX"></div>
+                    <div class="form-group">
+                        <label>শ্রেণি *</label>
+                        <select id="class_name" required>
+                            <option value="">নির্বাচন করুন</option>
+                            <option value="৬ষ্ঠ">৬ষ্ঠ</option><option value="৭ম">৭ম</option><option value="৮ম">৮ম</option>
+                            <option value="৯ম">৯ম</option><option value="১০ম">১০ম</option><option value="১১শ">১১শ</option><option value="১২ম">১২ম</option>
+                        </select>
+                    </div>
+                    <div class="form-group"><label>বিষয় *</label><input type="text" id="subject" required placeholder="উদা: সকল বিষয়"></div>
+                    <div class="form-group">
+                        <label>রক্তের গ্রুপ</label>
+                        <select id="blood">
+                            <option value="">নির্বাচন করুন</option>
+                            <option value="A+">A+</option><option value="B+">B+</option><option value="O+">O+</option><option value="AB+">AB+</option>
+                        </select>
+                    </div>
+                    <div class="form-group"><label>ঠিকানা *</label><textarea id="address" rows="2" required placeholder="আপনার বর্তমান ঠিকানা"></textarea></div>
+                    <div class="form-group"><label>স্কুল/কলেজের নাম *</label><input type="text" id="school" required placeholder="শিক্ষা প্রতিষ্ঠানের নাম"></div>
+                    <button type="submit" class="btn-submit">✅ চূড়ান্তভাবে জমা দিন</button>
+                </form>
+                <div id="status" class="status-msg"></div>
+            </div>
+
+            <div id="wa-form-section" class="form-section">
+                <form id="waForm">
+                    <div class="form-group"><label>শিক্ষার্থীর নাম *</label><input type="text" id="wa_name" required placeholder="নাম লিখুন"></div>
+                    <div class="form-group"><label>মোবাইল নম্বর *</label><input type="tel" id="wa_phone" required placeholder="০১৭XXXXXXXX"></div>
+                    <div class="form-group"><label>শ্রেণি *</label><input type="text" id="wa_class" required placeholder="যেমন: ১০ম"></div>
+                    <button type="submit" class="btn-submit btn-whatsapp">💬 হোয়াটসঅ্যাপে পাঠান</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="section" style="text-align: center;">
+            <h2>📞 ভর্তি ও যোগাযোগ</h2>
+            <p>পরিচালনায়: <strong>এ. কে. এম. তানভীর আরাফাত হৃদয়</strong></p>
+            <p>ঠিকানা: টি এন্ড টি পাড়া, বিহারীপাড়া রোড, কোটচাঁদপুর</p>
+            <a href="tel:01400034888" class="btn-call">📱 ০১৪০০০৩৪৮৮৮</a>
+            <a href="tel:01319466400" class="btn-call">📱 ০১৩১৯৪৬৬৪০০</a>
+        </div>
+    </div>
+    <footer><p>&copy; 2026 Educational Alliance</p></footer>
+    <script>
     function switchMethod(method) {
         document.getElementById('btn-choice-online').classList.remove('active');
         document.getElementById('btn-choice-wa').classList.remove('active');
@@ -105,7 +139,7 @@
         const name = document.getElementById('wa_name').value;
         const phone = document.getElementById('wa_phone').value;
         const className = document.getElementById('wa_class').value;
-        const myWhatsAppNumber = "8801400034888";
+        const myWhatsAppNumber = "8801400034888"; 
         const text = `*নতুন ভর্তি আবেদন (WhatsApp)*%0A----------------------%0A📝 নাম: ${name}%0A📱 মোবাইল: ${phone}%0A🏫 শ্রেণি: ${className}`;
         window.open(`https://whatsapp.com{myWhatsAppNumber}&text=${text}`, '_blank');
     });
@@ -113,10 +147,10 @@
     document.getElementById('onlineForm').addEventListener('submit', function(e) {
         e.preventDefault();
         const statusDiv = document.getElementById('status');
-        statusDiv.style.display = "block";
-        statusDiv.className = "status-msg";
+        statusDiv.style.display = "block"; statusDiv.className = "status-msg";
         statusDiv.innerText = "আবেদন প্রসেস করা হচ্ছে, অনুগ্রহ করে অপেক্ষা করুন...";
 
+        // আপনার সর্বশেষ সঠিক গুগল স্ক্রিপ্ট লিঙ্ক
         const scriptURL = 'https://google.com'; 
 
         const formData = new FormData();
@@ -126,24 +160,19 @@
         formData.append('class_name', document.getElementById('class_name').value);
         formData.append('subject', document.getElementById('subject').value);
         formData.append('blood', document.getElementById('blood').value);
-        formData.append('gender', document.getElementById('gender').value);
         formData.append('address', document.getElementById('address').value);
         formData.append('school', document.getElementById('school').value);
         formData.append('method', 'Online');
 
         fetch(scriptURL, { method: 'POST', body: formData })
         .then(response => {
-            statusDiv.classList.add('success');
-            statusDiv.innerText = "✅ আপনার আবেদনটি সফলভাবে জমা হয়েছে!";
+            statusDiv.classList.add('success'); statusDiv.innerText = "✅ আপনার আবেদনটি সফলভাবে জমা হয়েছে!";
             document.getElementById('onlineForm').reset();
         })
         .catch(error => {
-            statusDiv.classList.add('error');
-            statusDiv.innerText = "❌ আবেদন জমা দেওয়া যায়নি। নেটওয়ার্ক চেক করে আবার চেষ্টা করুন।";
-            console.error('Error!', error.message);
+            statusDiv.classList.add('error'); statusDiv.innerText = "❌ আবেদন জমা দেওয়া যায়নি। আবার চেষ্টা করুন।";
         });
     });
 </script>
 </body>
-          </html>
-              
+</html>
