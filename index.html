@@ -151,12 +151,36 @@ let s=document.getElementById("admissionSection");s.style.display="block";s.scro
 function getSubjects(){return Array.from(document.querySelectorAll('input[name="subject"]:checked')).map(x=>x.value).join(", ")}
 document.getElementById("admissionForm").addEventListener("submit",e=>{
 e.preventDefault();let subjects=getSubjects();if(!subjects){showNotice("দয়া করে অন্তত একটি বিষয় নির্বাচন করুন।","error");return}
-pendingData={name:studentName.value.trim(),studentPhone:studentPhone.value.trim(),parentPhone:parentPhone.value.trim(),studentClass:studentClass.value,subjects,bloodGroup:bloodGroup.value,gender:gender.value,address:studentAddress.value.trim(),schoolName:schoolName.value.trim(),applicationMethod};
-showReview();
+pendingData={
+studentName:studentName.value.trim(),
+studentPhone:studentPhone.value.trim(),
+parentPhone:parentPhone.value.trim(),
+studentClass:studentClass.value,
+subject:subjects,
+bloodGroup:bloodGroup.value,
+gender:gender.value,
+studentAddress:studentAddress.value.trim(),
+schoolName:schoolName.value.trim(),
+applicationMethod:applicationMethod
+};
 });
-function showReview(){let d=pendingData;let h="";h+=row("শিক্ষার্থীর নাম",d.name);h+=row("শিক্ষার্থীর মোবাইল",d.studentPhone||"দেওয়া হয়নি");h+=row("অভিভাবকের মোবাইল",d.parentPhone);h+=row("শ্রেণি",d.studentClass);h+=row("বিষয়",d.subjects);h+=row("রক্তের গ্রুপ",d.bloodGroup||"দেওয়া হয়নি");h+=row("লিঙ্গ",d.gender||"দেওয়া হয়নি");h+=row("ঠিকানা",d.address);h+=row("স্কুলের নাম",d.schoolName);h+=row("আবেদন মাধ্যম",d.applicationMethod);reviewContent.innerHTML=h;reviewBox.style.display="block";reviewBox.scrollIntoView({behavior:"smooth"});}
-function row(a,b){return '<div class="review-row"><strong>'+escapeHTML(a)+':</strong> '+escapeHTML(b)+'</div>'}
-function editApplication(){reviewBox.style.display="none";admissionForm.scrollIntoView({behavior:"smooth"})}
+function showReview(){
+let d=pendingData;
+let h="";
+h+=row("শিক্ষার্থীর নাম",d.studentName);
+h+=row("শিক্ষার্থীর মোবাইল",d.studentPhone||"দেওয়া হয়নি");
+h+=row("অভিভাবকের মোবাইল",d.parentPhone);
+h+=row("শ্রেণি",d.studentClass);
+h+=row("বিষয়",d.subject);
+h+=row("রক্তের গ্রুপ",d.bloodGroup||"দেওয়া হয়নি");
+h+=row("লিঙ্গ",d.gender||"দেওয়া হয়নি");
+h+=row("ঠিকানা",d.studentAddress);
+h+=row("স্কুলের নাম",d.schoolName);
+h+=row("আবেদন মাধ্যম",d.applicationMethod);
+reviewContent.innerHTML=h;
+reviewBox.style.display="block";
+reviewBox.scrollIntoView({behavior:"smooth"});
+  }
 async function finalSubmit(){
 if(!pendingData)return;formNotice.className="notice";formNotice.style.display="block";formNotice.innerHTML="⏳ আপনার আবেদন জমা হচ্ছে...";
 try{
